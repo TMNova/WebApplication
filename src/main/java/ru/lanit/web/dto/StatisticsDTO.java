@@ -2,31 +2,31 @@ package ru.lanit.web.dto;
 
 public class StatisticsDTO {
 
-    private Long personCount;
-    private Long carCount;
-    private Long uniqueVendorCount;
+    private Long personcount;
+    private Long carcount;
+    private Long uniquevendorcount;
 
-    public Long getPersonCount() {
-        return personCount;
+    public Long getPersoncount() {
+        return personcount;
     }
 
-    public void setPersonCount(Long personCount) {
-        this.personCount = personCount;
+    public void setPersoncount(Long personcount) {
+        this.personcount = personcount;
     }
 
-    public Long getCarCount() {
-        return carCount;
+    public Long getCarcount() {
+        return carcount;
     }
 
-    public void setCarCount(Long carCount) {
-        this.carCount = carCount;
+    public void setCarcount(Long carcount) {
+        this.carcount = carcount;
     }
 
-    public Long getUniqueVendorCount() {
-        return uniqueVendorCount;
+    public Long getUniquevendorcount() {
+        return uniquevendorcount;
     }
 
-    public void setUniqueVendorCount(Long uniqueVendorCount) {
-        this.uniqueVendorCount = uniqueVendorCount;
+    public void setUniquevendorcount(Long uniquevendorcount) {
+        this.uniquevendorcount = uniquevendorcount;
     }
 }

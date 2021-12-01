@@ -6,6 +6,8 @@ import ru.lanit.web.dto.StatisticsDTO;
 import ru.lanit.web.repository.CarRepository;
 import ru.lanit.web.repository.PersonRepository;
 
+import java.util.Locale;
+
 @Service
 public class StatisticsService {
 
@@ -20,10 +22,19 @@ public class StatisticsService {
 
     public StatisticsDTO getStatistics() {
         StatisticsDTO statistics = new StatisticsDTO();
-        statistics.setPersonCount(personRepository.count());
-        statistics.setCarCount(carRepository.count());
-        statistics.setUniqueVendorCount(carRepository.countDistinctVendor());
+        statistics.setPersoncount(personRepository.count());
+        statistics.setCarcount(carRepository.count());
+        statistics.setUniquevendorcount(getUniqueVendors());
 
         return statistics;
+    }
+
+    private Long getUniqueVendors() {
+        return carRepository.findVendors()
+                .stream()
+                .map(string -> String.join("", string.split("-")))
+                .map(string -> string.toLowerCase(Locale.ROOT))
+                .distinct()
+                .count();
     }
 }

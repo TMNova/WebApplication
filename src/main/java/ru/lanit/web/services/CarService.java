@@ -27,15 +27,17 @@ public class CarService {
 
     public void createCar(CarDTO carDTO) {
         checkPersonToNotExistById(carDTO.getOwnerId());
+
+        Map<String, String> vendorModelFormat = toVendorModelFormat(carDTO.getModel());
+
         checkPersonToMinAgeForDriveCar(carDTO.getOwnerId());
         checkCarToExistById(carDTO.getId());
-        Map<String, String> vendorModelFormat = toVendorModelFormat(carDTO.getModel());
 
         Car car = new Car();
         car.setId(carDTO.getId());
         car.setVendor(vendorModelFormat.get("Vendor"));
         car.setModel(vendorModelFormat.get("Model"));
-        car.setHorsePower(carDTO.getHorsePower());
+        car.setHorsepower(carDTO.getHorsepower());
         car.setOwnerId(personRepository.getById(carDTO.getOwnerId()));
 
         carRepository.save(car);
@@ -60,10 +62,23 @@ public class CarService {
     }
 
     private Map<String, String> toVendorModelFormat(String model) {
+        if(model.charAt(0) == '-') throw new BadRequestException("Bad Request");
         String[] strings = model.split("-");
+        StringBuilder vendor = new StringBuilder();
+        String modelNew = "";
+        if (model.charAt(model.length() - 1) == '-') {
+            modelNew = "-";
+        }
+
+        for(int i = 0; i < strings.length - 1; i++) {
+            vendor.append(strings[i]);
+            if(i < strings.length - 2) vendor.append("-");
+        }
+
+        String finalModelNew = modelNew;
         return new HashMap<String, String>() {{
-            put("Vendor", strings[0]);
-            put("Model", strings[1]);
+            put("Vendor", vendor.toString());
+            put("Model", strings[strings.length - 1] + finalModelNew);
         }};
     }
 }

@@ -1,7 +1,7 @@
 package ru.lanit.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import ru.lanit.web.entity.Car;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -17,10 +17,11 @@ public class PersonWithCarsDTO {
 
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
-    private LocalDate birthday;
+    private LocalDate birthdate;
 
     @NotNull
-    private List<Car> cars;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<CarDTO> cars;
 
     public Long getId() {
         return id;
@@ -38,19 +39,19 @@ public class PersonWithCarsDTO {
         this.name = name;
     }
 
-    public LocalDate getBirthday() {
-        return birthday;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
+    public void setBirthday(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
-    public List<Car> getCars() {
+    public List<CarDTO> getCars() {
         return cars;
     }
 
-    public void setCars(List<Car> cars) {
+    public void setCars(List<CarDTO> cars) {
         this.cars = cars;
     }
 }

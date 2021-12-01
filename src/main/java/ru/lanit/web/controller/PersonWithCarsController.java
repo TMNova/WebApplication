@@ -1,10 +1,7 @@
 package ru.lanit.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.lanit.web.dto.PersonWithCarsDTO;
 import ru.lanit.web.services.PersonWithCarsService;
 
@@ -16,7 +13,8 @@ public class PersonWithCarsController {
     private PersonWithCarsService personWithCarsService;
 
     @GetMapping
-    public PersonWithCarsDTO getPersonWithCars(@RequestParam(name = "personId") String id) {
-        return personWithCarsService.getPersonWithCars(Long.parseLong(id));
+    public PersonWithCarsDTO getPersonWithCars(@RequestParam(name = "personid") String id) {
+
+        return personWithCarsService.getPersonWithCars(id);
     }
 }

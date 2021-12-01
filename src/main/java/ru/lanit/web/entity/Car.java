@@ -8,14 +8,13 @@ import javax.persistence.*;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String vendor;
     @Column(nullable = false)
     private String model;
     @Column(nullable = false)
-    private Integer horsePower;
+    private Integer horsepower;
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonBackReference
     private Person ownerId;
@@ -44,12 +43,12 @@ public class Car {
         this.model = model;
     }
 
-    public Integer getHorsePower() {
-        return horsePower;
+    public Integer getHorsepower() {
+        return horsepower;
     }
 
-    public void setHorsePower(Integer horsePower) {
-        this.horsePower = horsePower;
+    public void setHorsepower(Integer horsepower) {
+        this.horsepower = horsepower;
     }
 
     public Person getOwnerId() {

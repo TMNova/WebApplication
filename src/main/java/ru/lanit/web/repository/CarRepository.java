@@ -11,6 +11,6 @@ import java.util.List;
 public interface CarRepository extends JpaRepository<Car, Long> {
     public List<Car> findAllByOwnerId_Id(Long id);
 
-    @Query(value = "SELECT COUNT(DISTINCT vendor) FROM Car")
-    public Long countDistinctVendor();
+    @Query(value = "SELECT vendor FROM Car")
+    public List<String> findVendors();
 }

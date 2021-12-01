@@ -24,7 +24,7 @@ public class PersonService {
 
         person.setId(personDTO.getId());
         person.setName(personDTO.getName());
-        person.setBirthday(personDTO.getBirthday());
+        person.setBirthday(personDTO.getBirthdate());
         personRepository.save(person);
     }
 

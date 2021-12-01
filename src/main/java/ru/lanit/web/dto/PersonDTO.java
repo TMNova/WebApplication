@@ -3,7 +3,6 @@ package ru.lanit.web.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
@@ -14,14 +13,13 @@ public class PersonDTO {
     private Long id;
 
     @NotNull
-    @NotEmpty
     private String name;
 
     @NotNull
     @Past
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     @DateTimeFormat(pattern = "dd.MM.yyyy")
-    private LocalDate birthday;
+    private LocalDate birthdate;
 
     public Long getId() {
         return id;
@@ -39,11 +37,11 @@ public class PersonDTO {
         this.name = name;
     }
 
-    public LocalDate getBirthday() {
-        return birthday;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
+    public void setBirthday(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 }

@@ -3,7 +3,6 @@ package ru.lanit.web.dto;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 public class CarDTO {
 
@@ -12,11 +11,11 @@ public class CarDTO {
 
     @NotNull
     @NotEmpty
-    @Pattern(regexp = "^[A-Za-z0-9]+-[A-Za-z0-9]+$")
     private String model;
 
     @Min(value = 1)
-    private int horsePower;
+    @NotNull
+    private Integer horsepower;
 
     @NotNull
     private Long ownerId;
@@ -37,12 +36,12 @@ public class CarDTO {
         this.model = model;
     }
 
-    public int getHorsePower() {
-        return horsePower;
+    public Integer getHorsepower() {
+        return horsepower;
     }
 
-    public void setHorsePower(int horsePower) {
-        this.horsePower = horsePower;
+    public void setHorsepower(Integer horsepower) {
+        this.horsepower = horsepower;
     }
 
     public Long getOwnerId() {
