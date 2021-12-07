@@ -1,5 +1,7 @@
 package ru.lanit.web.dto;
 
+import java.util.Objects;
+
 public class StatisticsDTO {
 
     private Long personcount;
@@ -29,4 +31,5 @@ public class StatisticsDTO {
     public void setUniquevendorcount(Long uniquevendorcount) {
         this.uniquevendorcount = uniquevendorcount;
     }
+
 }

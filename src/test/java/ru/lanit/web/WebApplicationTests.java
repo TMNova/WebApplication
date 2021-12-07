@@ -1,4 +1,4 @@
-package com.example.demo;
+package ru.lanit.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
