@@ -16,8 +16,9 @@ public class Car {
     @Column(nullable = false)
     private Integer horsepower;
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name="ownerId")
     @JsonBackReference
-    private Person ownerId;
+    private Person person;
 
     public Long getId() {
         return id;
@@ -51,11 +52,11 @@ public class Car {
         this.horsepower = horsepower;
     }
 
-    public Person getOwnerId() {
-        return ownerId;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setOwnerId(Person ownerId) {
-        this.ownerId = ownerId;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

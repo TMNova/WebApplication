@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 public class PersonWithCarsDTO {
 

@@ -5,16 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 import ru.lanit.web.dto.PersonDTO;
-import ru.lanit.web.exceptions.BadRequestException;
+import ru.lanit.web.exceptions.PersonAlreadyExistInDBException;
 import ru.lanit.web.repository.PersonRepository;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -41,9 +39,9 @@ class PersonServiceTest {
     void createPersonFail() {
         PersonDTO personDTO = new PersonDTO();
 
-        when(personRepository.existsById(personDTO.getId())).thenThrow(BadRequestException.class);
+        when(personRepository.existsById(personDTO.getId())).thenThrow(PersonAlreadyExistInDBException.class);
 
-        Assertions.assertThrows(BadRequestException.class, () -> personService.createPerson(personDTO));
+        Assertions.assertThrows(PersonAlreadyExistInDBException.class, () -> personService.createPerson(personDTO));
         Mockito.verify(personRepository, Mockito.times(0)).save(any());
     }
 }

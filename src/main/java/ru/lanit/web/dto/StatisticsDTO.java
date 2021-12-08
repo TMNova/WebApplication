@@ -1,7 +1,5 @@
 package ru.lanit.web.dto;
 
-import java.util.Objects;
-
 public class StatisticsDTO {
 
     private Long personcount;

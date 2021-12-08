@@ -7,7 +7,7 @@ insert into person(id, name, birthday) values
                                            (3, 'Andrey', '2000-10-10'),
                                             (4, 'validperson', '2000-10-10');
 
-insert into car(id, vendor, model, horsepower, owner_id_id) values
+insert into car(id, vendor, model, horsepower, owner_id) values
                                                                 (1, 'BMW', '525d', 190, 1),
                                                                 (2, 'KIA', 'Sportage', 184, 1),
                                                                 (3, 'BMW', '525d', 190, 3),

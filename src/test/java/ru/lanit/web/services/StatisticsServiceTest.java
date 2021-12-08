@@ -1,6 +1,5 @@
 package ru.lanit.web.services;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
@@ -11,8 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import ru.lanit.web.dto.StatisticsDTO;
 import ru.lanit.web.repository.CarRepository;
 import ru.lanit.web.repository.PersonRepository;
-
-import javax.swing.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
