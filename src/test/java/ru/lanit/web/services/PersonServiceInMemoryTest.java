@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import ru.lanit.web.WebApplication;
 import ru.lanit.web.dto.PersonDTO;
 import ru.lanit.web.entity.Person;
-import ru.lanit.web.exceptions.person.PersonAlreadyExistInDBException;
+import ru.lanit.web.exceptions.ObjectExistException;
 import ru.lanit.web.repository.PersonRepository;
 
 import java.time.LocalDate;
@@ -46,7 +46,7 @@ public class PersonServiceInMemoryTest {
     }
 
     @Test
-    public void createPerson() {
+    public void createPerson() throws Exception {
         PersonDTO personExpect = new PersonDTO();
         personExpect.setId(3L);
         personExpect.setName("Olga");
@@ -68,7 +68,7 @@ public class PersonServiceInMemoryTest {
         personExpect.setName("Olga");
         personExpect.setBirthday(LocalDate.of(2000, 10, 10));
 
-        Assert.assertThrows(PersonAlreadyExistInDBException.class, () -> personService.createPerson(personExpect));
+        Assert.assertThrows(ObjectExistException.class, () -> personService.createPerson(personExpect));
     }
 
 }

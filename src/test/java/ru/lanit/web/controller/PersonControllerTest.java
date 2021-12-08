@@ -40,7 +40,7 @@ class PersonControllerTest extends AbstractTestClass {
     BindingResult bindingResult;
 
     @Test
-    void addPersonShouldReturnIsOk() {
+    void addPersonShouldReturnIsOk() throws Exception {
         PersonDTO personDTO = new PersonDTO();
 
         personDTO.setId(1L);

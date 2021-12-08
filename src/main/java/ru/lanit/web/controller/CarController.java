@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.lanit.web.dto.CarDTO;
-import ru.lanit.web.exceptions.car.CarDTOValidationException;
+import ru.lanit.web.exceptions.ValidationException;
 import ru.lanit.web.services.CarService;
 
 import javax.validation.Valid;
@@ -20,9 +20,9 @@ public class CarController {
     private CarService carService;
 
     @PostMapping()
-    public CarDTO addCar(@Valid @RequestBody CarDTO carDTO, BindingResult bindingResult) {
+    public CarDTO addCar(@Valid @RequestBody CarDTO carDTO, BindingResult bindingResult) throws Exception {
         if(bindingResult.hasErrors()) {
-            throw new CarDTOValidationException();
+            throw new ValidationException();
         }
 
         carService.createCar(carDTO);

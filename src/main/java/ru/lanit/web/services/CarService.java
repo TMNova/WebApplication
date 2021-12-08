@@ -4,10 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lanit.web.dto.CarDTO;
 import ru.lanit.web.entity.Car;
-import ru.lanit.web.exceptions.car.CarAlreadyExistInDBException;
-import ru.lanit.web.exceptions.car.CarVendorModelFormatException;
-import ru.lanit.web.exceptions.person.PersonMinAgeForCarException;
-import ru.lanit.web.exceptions.person.PersonNotExistInDBException;
+import ru.lanit.web.exceptions.ObjectExistException;
+import ru.lanit.web.exceptions.ValidationException;
 import ru.lanit.web.repository.CarRepository;
 import ru.lanit.web.repository.PersonRepository;
 
@@ -28,7 +26,7 @@ public class CarService {
         this.personRepository = personRepository;
     }
 
-    public void createCar(CarDTO carDTO) {
+    public void createCar(CarDTO carDTO) throws Exception {
         checkPersonToNotExistById(carDTO.getOwnerId());
 
         Map<String, String> vendorModelFormat = toVendorModelFormat(carDTO.getModel());
@@ -46,25 +44,25 @@ public class CarService {
         carRepository.save(car);
     }
 
-    private void checkPersonToMinAgeForDriveCar(Long ownerId) {
+    private void checkPersonToMinAgeForDriveCar(Long ownerId) throws ValidationException {
         LocalDate birthday = personRepository.getById(ownerId).getBirthday();
         LocalDate now = LocalDate.now();
         int yearsDifference = Period.between(birthday, now).getYears();
-        if(yearsDifference < 18) throw new PersonMinAgeForCarException();
+        if(yearsDifference < 18) throw new ValidationException();
     }
 
-    private void checkPersonToNotExistById(Long personId) {
+    private void checkPersonToNotExistById(Long personId) throws ObjectExistException {
         if(!personRepository.existsById(personId))
-            throw new PersonNotExistInDBException();
+            throw new ObjectExistException();
     }
 
-    private void checkCarToExistById(Long carId) {
+    private void checkCarToExistById(Long carId) throws ObjectExistException {
         if(carRepository.existsById(carId))
-            throw new CarAlreadyExistInDBException();
+            throw new ObjectExistException();
     }
 
-    private Map<String, String> toVendorModelFormat(String model) {
-        if(model.charAt(0) == '-') throw new CarVendorModelFormatException();
+    private Map<String, String> toVendorModelFormat(String model) throws ValidationException {
+        if(model.charAt(0) == '-') throw new ValidationException();
         String[] strings = model.split("-");
         StringBuilder vendor = new StringBuilder();
         String modelNew = "";

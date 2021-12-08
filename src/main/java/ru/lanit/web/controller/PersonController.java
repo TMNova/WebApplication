@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.lanit.web.dto.PersonDTO;
-import ru.lanit.web.exceptions.person.PersonDTOValidationException;
+import ru.lanit.web.exceptions.ValidationException;
 import ru.lanit.web.services.PersonService;
 
 import javax.validation.Valid;
@@ -20,9 +20,9 @@ public class PersonController {
     private PersonService personService;
 
     @PostMapping
-    public PersonDTO addPerson(@Valid @RequestBody PersonDTO personDTO, BindingResult bindingResult) {
+    public PersonDTO addPerson(@Valid @RequestBody PersonDTO personDTO, BindingResult bindingResult) throws Exception {
         if(bindingResult.hasErrors()) {
-            throw new PersonDTOValidationException();
+            throw new ValidationException();
         }
 
         personService.createPerson(personDTO);

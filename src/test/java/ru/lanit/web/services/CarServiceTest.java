@@ -10,9 +10,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.lanit.web.dto.CarDTO;
 import ru.lanit.web.entity.Person;
-import ru.lanit.web.exceptions.car.CarAlreadyExistInDBException;
-import ru.lanit.web.exceptions.person.PersonMinAgeForCarException;
-import ru.lanit.web.exceptions.person.PersonNotExistInDBException;
+import ru.lanit.web.exceptions.ObjectExistException;
+import ru.lanit.web.exceptions.ValidationException;
 import ru.lanit.web.repository.CarRepository;
 import ru.lanit.web.repository.PersonRepository;
 
@@ -58,7 +57,7 @@ public class CarServiceTest {
 
         when(personRepository.existsById(carDTO.getOwnerId())).thenReturn(false);
 
-        Assertions.assertThrows(PersonNotExistInDBException.class, () -> carService.createCar(carDTO));
+        Assertions.assertThrows(ObjectExistException.class, () -> carService.createCar(carDTO));
         Mockito.verify(carRepository, Mockito.times(0)).save(any());
         Mockito.verify(carRepository, Mockito.times(0)).existsById(carDTO.getId());
         Mockito.verify(personRepository, Mockito.times(1)).existsById(carDTO.getOwnerId());
@@ -75,7 +74,7 @@ public class CarServiceTest {
         when(personRepository.existsById(carDTO.getOwnerId())).thenReturn(true);
         when(personRepository.getById(carDTO.getOwnerId())).thenReturn(person);
 
-        Assertions.assertThrows(PersonMinAgeForCarException.class, () -> carService.createCar(carDTO));
+        Assertions.assertThrows(ValidationException.class, () -> carService.createCar(carDTO));
         Mockito.verify(carRepository, Mockito.times(0)).save(any());
         Mockito.verify(carRepository, Mockito.times(0)).existsById(carDTO.getId());
         Mockito.verify(personRepository, Mockito.times(1)).existsById(carDTO.getOwnerId());
@@ -93,7 +92,7 @@ public class CarServiceTest {
         when(personRepository.getById(carDTO.getOwnerId())).thenReturn(person);
         when(carRepository.existsById(carDTO.getId())).thenReturn(true);
 
-        Assertions.assertThrows(CarAlreadyExistInDBException.class, () -> carService.createCar(carDTO));
+        Assertions.assertThrows(ObjectExistException.class, () -> carService.createCar(carDTO));
         Mockito.verify(carRepository, Mockito.times(0)).save(any());
         Mockito.verify(carRepository, Mockito.times(1)).existsById(carDTO.getId());
         Mockito.verify(personRepository, Mockito.times(1)).existsById(carDTO.getOwnerId());

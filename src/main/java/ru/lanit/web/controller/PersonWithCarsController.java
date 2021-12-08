@@ -16,7 +16,7 @@ public class PersonWithCarsController {
     private PersonWithCarsService personWithCarsService;
 
     @GetMapping
-    public PersonWithCarsDTO getPersonWithCars(@RequestParam(name = "personid") String id) {
+    public PersonWithCarsDTO getPersonWithCars(@RequestParam(name = "personid") String id) throws Exception {
 
         return personWithCarsService.getPersonWithCars(id);
     }

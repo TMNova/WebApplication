@@ -10,8 +10,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.lanit.web.dto.PersonWithCarsDTO;
 import ru.lanit.web.entity.Person;
+import ru.lanit.web.exceptions.ObjectNotFoundException;
 import ru.lanit.web.exceptions.ParsingNumberFormatException;
-import ru.lanit.web.exceptions.person.PersonNotFoundException;
 import ru.lanit.web.repository.CarRepository;
 import ru.lanit.web.repository.PersonRepository;
 
@@ -34,7 +34,7 @@ public class PersonWithCarsServiceTest {
     CarRepository carRepository;
 
     @Test
-    public void getPersonWithCars() {
+    public void getPersonWithCars() throws Exception {
         when(personRepository.existsById(anyLong())).thenReturn(true);
         when(personRepository.getById(anyLong())).thenReturn(new Person());
 
@@ -60,7 +60,7 @@ public class PersonWithCarsServiceTest {
     public void getPersonWithCarsNotExistPersonFail() {
         when(personRepository.existsById(anyLong())).thenReturn(false);
 
-        Assertions.assertThrows(PersonNotFoundException.class, () -> personWithCarsService.getPersonWithCars("1"));
+        Assertions.assertThrows(ObjectNotFoundException.class, () -> personWithCarsService.getPersonWithCars("1"));
         Mockito.verify(personRepository, Mockito.times(1)).existsById(anyLong());
         Mockito.verify(personRepository, Mockito.times(0)).getById(anyLong());
     }

@@ -53,7 +53,7 @@ class CarControllerTest extends AbstractTestClass {
     private Long idNotExistPerson;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws Exception {
         PersonDTO validPerson = new PersonDTO();
         PersonDTO nonValidForCarPerson = new PersonDTO();
 
