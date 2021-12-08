@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import ru.lanit.web.dto.PersonWithCarsDTO;
 import ru.lanit.web.entity.Person;
 import ru.lanit.web.exceptions.ParsingNumberFormatException;
-import ru.lanit.web.exceptions.PersonNotFoundException;
+import ru.lanit.web.exceptions.person.PersonNotFoundException;
 import ru.lanit.web.repository.CarRepository;
 import ru.lanit.web.repository.PersonRepository;
 

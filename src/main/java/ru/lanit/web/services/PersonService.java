@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lanit.web.dto.PersonDTO;
 import ru.lanit.web.entity.Person;
-import ru.lanit.web.exceptions.PersonAlreadyExistInDBException;
+import ru.lanit.web.exceptions.person.PersonAlreadyExistInDBException;
 import ru.lanit.web.repository.PersonRepository;
 
 @Service

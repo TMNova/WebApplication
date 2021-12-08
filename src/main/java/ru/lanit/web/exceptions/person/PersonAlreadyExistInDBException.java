@@ -1,4 +1,4 @@
-package ru.lanit.web.exceptions;
+package ru.lanit.web.exceptions.person;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -10,9 +10,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.lanit.web.dto.CarDTO;
 import ru.lanit.web.entity.Person;
-import ru.lanit.web.exceptions.CarAlreadyExistInDBException;
-import ru.lanit.web.exceptions.PersonMinAgeForCarException;
-import ru.lanit.web.exceptions.PersonNotExistInDBException;
+import ru.lanit.web.exceptions.car.CarAlreadyExistInDBException;
+import ru.lanit.web.exceptions.person.PersonMinAgeForCarException;
+import ru.lanit.web.exceptions.person.PersonNotExistInDBException;
 import ru.lanit.web.repository.CarRepository;
 import ru.lanit.web.repository.PersonRepository;
 

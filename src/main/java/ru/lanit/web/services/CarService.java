@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lanit.web.dto.CarDTO;
 import ru.lanit.web.entity.Car;
-import ru.lanit.web.exceptions.CarAlreadyExistInDBException;
-import ru.lanit.web.exceptions.CarVendorModelFormatException;
-import ru.lanit.web.exceptions.PersonMinAgeForCarException;
-import ru.lanit.web.exceptions.PersonNotExistInDBException;
+import ru.lanit.web.exceptions.car.CarAlreadyExistInDBException;
+import ru.lanit.web.exceptions.car.CarVendorModelFormatException;
+import ru.lanit.web.exceptions.person.PersonMinAgeForCarException;
+import ru.lanit.web.exceptions.person.PersonNotExistInDBException;
 import ru.lanit.web.repository.CarRepository;
 import ru.lanit.web.repository.PersonRepository;
 
