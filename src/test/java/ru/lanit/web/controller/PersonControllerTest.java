@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import ru.lanit.web.AbstractTestClass;
 import ru.lanit.web.WebApplication;
 import ru.lanit.web.dto.PersonDTO;
+import ru.lanit.web.exceptions.BusinessServiceException;
 
 import java.time.LocalDate;
 
@@ -40,7 +41,7 @@ class PersonControllerTest extends AbstractTestClass {
     BindingResult bindingResult;
 
     @Test
-    void addPersonShouldReturnIsOk() throws Exception {
+    void addPersonShouldReturnIsOk() throws BusinessServiceException {
         PersonDTO personDTO = new PersonDTO();
 
         personDTO.setId(1L);

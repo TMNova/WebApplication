@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lanit.web.dto.CarDTO;
 import ru.lanit.web.entity.Car;
-import ru.lanit.web.exceptions.ObjectExistException;
+import ru.lanit.web.exceptions.BusinessServiceException;
+import ru.lanit.web.exceptions.ObjectAlreadyExistException;
+import ru.lanit.web.exceptions.ObjectNotExistException;
 import ru.lanit.web.exceptions.ValidationException;
 import ru.lanit.web.repository.CarRepository;
 import ru.lanit.web.repository.PersonRepository;
@@ -26,7 +28,7 @@ public class CarService {
         this.personRepository = personRepository;
     }
 
-    public void createCar(CarDTO carDTO) throws Exception {
+    public void createCar(CarDTO carDTO) throws BusinessServiceException {
         checkPersonToNotExistById(carDTO.getOwnerId());
 
         Map<String, String> vendorModelFormat = toVendorModelFormat(carDTO.getModel());
@@ -51,14 +53,14 @@ public class CarService {
         if(yearsDifference < 18) throw new ValidationException();
     }
 
-    private void checkPersonToNotExistById(Long personId) throws ObjectExistException {
+    private void checkPersonToNotExistById(Long personId) throws ObjectNotExistException {
         if(!personRepository.existsById(personId))
-            throw new ObjectExistException();
+            throw new ObjectNotExistException();
     }
 
-    private void checkCarToExistById(Long carId) throws ObjectExistException {
+    private void checkCarToExistById(Long carId) throws ObjectAlreadyExistException {
         if(carRepository.existsById(carId))
-            throw new ObjectExistException();
+            throw new ObjectAlreadyExistException();
     }
 
     private Map<String, String> toVendorModelFormat(String model) throws ValidationException {

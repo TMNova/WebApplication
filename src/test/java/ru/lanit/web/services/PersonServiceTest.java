@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.lanit.web.dto.PersonDTO;
-import ru.lanit.web.exceptions.ObjectExistException;
+import ru.lanit.web.exceptions.ObjectAlreadyExistException;
 import ru.lanit.web.repository.PersonRepository;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -41,7 +41,7 @@ class PersonServiceTest {
 
         when(personRepository.existsById(personDTO.getId())).thenReturn(true);
 
-        Assertions.assertThrows(ObjectExistException.class, () -> personService.createPerson(personDTO));
+        Assertions.assertThrows(ObjectAlreadyExistException.class, () -> personService.createPerson(personDTO));
         Mockito.verify(personRepository, Mockito.times(0)).save(any());
     }
 }

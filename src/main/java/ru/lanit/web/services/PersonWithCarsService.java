@@ -6,6 +6,7 @@ import ru.lanit.web.dto.CarDTO;
 import ru.lanit.web.dto.PersonWithCarsDTO;
 import ru.lanit.web.entity.Car;
 import ru.lanit.web.entity.Person;
+import ru.lanit.web.exceptions.BusinessServiceException;
 import ru.lanit.web.exceptions.ObjectNotFoundException;
 import ru.lanit.web.exceptions.ParsingNumberFormatException;
 import ru.lanit.web.repository.CarRepository;
@@ -26,7 +27,7 @@ public class PersonWithCarsService {
         this.carRepository = carRepository;
     }
 
-    public PersonWithCarsDTO getPersonWithCars(String id) throws Exception {
+    public PersonWithCarsDTO getPersonWithCars(String id) throws BusinessServiceException {
         try {
             Long personId = Long.parseLong(id);
             checkPersonToExistById(personId);

@@ -1,5 +1,5 @@
 package ru.lanit.web.exceptions;
 
-public class ValidationException extends Exception {
+public class ValidationException extends BusinessServiceException {
     
 }

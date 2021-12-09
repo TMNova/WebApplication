@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.lanit.web.dto.PersonWithCarsDTO;
 import ru.lanit.web.entity.Person;
+import ru.lanit.web.exceptions.BusinessServiceException;
 import ru.lanit.web.exceptions.ObjectNotFoundException;
 import ru.lanit.web.exceptions.ParsingNumberFormatException;
 import ru.lanit.web.repository.CarRepository;
@@ -34,7 +35,7 @@ public class PersonWithCarsServiceTest {
     CarRepository carRepository;
 
     @Test
-    public void getPersonWithCars() throws Exception {
+    public void getPersonWithCars() throws BusinessServiceException {
         when(personRepository.existsById(anyLong())).thenReturn(true);
         when(personRepository.getById(anyLong())).thenReturn(new Person());
 

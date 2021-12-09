@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.lanit.web.dto.PersonDTO;
+import ru.lanit.web.exceptions.BusinessServiceException;
 import ru.lanit.web.exceptions.ValidationException;
 import ru.lanit.web.services.PersonService;
 
@@ -20,7 +21,7 @@ public class PersonController {
     private PersonService personService;
 
     @PostMapping
-    public PersonDTO addPerson(@Valid @RequestBody PersonDTO personDTO, BindingResult bindingResult) throws Exception {
+    public PersonDTO addPerson(@Valid @RequestBody PersonDTO personDTO, BindingResult bindingResult) throws BusinessServiceException {
         if(bindingResult.hasErrors()) {
             throw new ValidationException();
         }

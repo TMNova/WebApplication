@@ -18,6 +18,7 @@ import ru.lanit.web.AbstractTestClass;
 import ru.lanit.web.WebApplication;
 import ru.lanit.web.dto.CarDTO;
 import ru.lanit.web.dto.PersonDTO;
+import ru.lanit.web.exceptions.BusinessServiceException;
 import ru.lanit.web.repository.PersonRepository;
 
 import java.time.LocalDate;
@@ -53,7 +54,7 @@ class CarControllerTest extends AbstractTestClass {
     private Long idNotExistPerson;
 
     @BeforeEach
-    public void setup() throws Exception {
+    public void setup() throws BusinessServiceException {
         PersonDTO validPerson = new PersonDTO();
         PersonDTO nonValidForCarPerson = new PersonDTO();
 
@@ -78,7 +79,7 @@ class CarControllerTest extends AbstractTestClass {
     }
 
     @Test
-    void addCarShouldReturnIsOk() throws Exception {
+    void addCarShouldReturnIsOk() throws BusinessServiceException {
         CarDTO carDTO = new CarDTO();
 
         carDTO.setId(8L);

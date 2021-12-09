@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.lanit.web.dto.PersonWithCarsDTO;
+import ru.lanit.web.exceptions.BusinessServiceException;
 import ru.lanit.web.services.PersonWithCarsService;
 
 @RestController
@@ -16,7 +17,7 @@ public class PersonWithCarsController {
     private PersonWithCarsService personWithCarsService;
 
     @GetMapping
-    public PersonWithCarsDTO getPersonWithCars(@RequestParam(name = "personid") String id) throws Exception {
+    public PersonWithCarsDTO getPersonWithCars(@RequestParam(name = "personid") String id) throws BusinessServiceException {
 
         return personWithCarsService.getPersonWithCars(id);
     }

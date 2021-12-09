@@ -1,8 +1,5 @@
 package ru.lanit.web.exceptions;
 
-public class ParsingNumberFormatException extends Exception {
+public class ParsingNumberFormatException extends BusinessServiceException {
 
-    public ParsingNumberFormatException() {
-        super("Request param is not a number");
-    }
 }

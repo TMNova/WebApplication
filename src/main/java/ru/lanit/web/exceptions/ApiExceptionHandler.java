@@ -10,7 +10,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {ObjectExistException.class, ValidationException.class, ParsingNumberFormatException.class})
+    @ExceptionHandler(value = {ObjectAlreadyExistException.class, ValidationException.class,
+            ParsingNumberFormatException.class, ObjectNotExistException.class})
     public ResponseEntity<?> handleBadRequestException() {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }

@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lanit.web.dto.PersonDTO;
 import ru.lanit.web.entity.Person;
-import ru.lanit.web.exceptions.ObjectExistException;
+import ru.lanit.web.exceptions.BusinessServiceException;
+import ru.lanit.web.exceptions.ObjectAlreadyExistException;
 import ru.lanit.web.repository.PersonRepository;
 
 @Service
@@ -17,7 +18,7 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public void createPerson(PersonDTO personDTO) throws Exception {
+    public void createPerson(PersonDTO personDTO) throws BusinessServiceException {
         checkPersonToExistById(personDTO.getId());
 
         Person person = new Person();
@@ -28,9 +29,9 @@ public class PersonService {
         personRepository.save(person);
     }
 
-    private void checkPersonToExistById(Long personId) throws ObjectExistException {
+    private void checkPersonToExistById(Long personId) throws ObjectAlreadyExistException {
         if(personRepository.existsById(personId))
-            throw new ObjectExistException();
+            throw new ObjectAlreadyExistException();
     }
 
 }
